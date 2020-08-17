@@ -2,16 +2,12 @@ const WIDTH = 800,
     HEIGHT = 800;
 
 let Engine = Matter.Engine,
-    Render = Matter.Render,
     World = Matter.World,
     Bodies = Matter.Bodies;
 
-let engine = Engine.create();
+let gridSize = 10;
 
-let render = Render.create({
-    element: document.body,
-    engine: engine
-});
+let engine = Engine.create();
 
 let boxA = Bodies.rectangle(400, 200, 80, 80);
 let boxB = Bodies.rectangle(400, 50, 80, 80);
@@ -21,14 +17,17 @@ World.add(engine.world, [boxA, boxB, ground]);
 
 Engine.run(engine);
 
-Render.run(render);
+BACKGROUND_COLOR = 210;
+
+let b;
 
 function setup() {
     createCanvas(800, 800);
     console.log(boxA.vertices);
+    b = new Block();
 }
 function draw() {
-    background(210);
+    background(BACKGROUND_COLOR);
 
     fill(0);
     beginShape();
@@ -36,6 +35,7 @@ function draw() {
         vertex(v.x, v.y)
     });
     endShape(CLOSE);
+    b.draw();
 }
 
 
