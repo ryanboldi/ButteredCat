@@ -5,3 +5,6 @@
 
 # Compositional Pattern Producing Network
 ![cppn](/planning/cppn.png)
+
+# How the CPPN will generate a usable mesh
+![block](/planning/block.png)
