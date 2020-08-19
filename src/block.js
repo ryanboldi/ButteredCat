@@ -28,6 +28,14 @@ class Block {
                 if (this.pixels[i][j] == 1) {
                     if (!this.neighborPixel(i, j, 0)) {
                         //add both north vertices
+
+                        //top left
+                        this.addVertex(this.x + (i * this.smallWidth),
+                            this.y + (j * this.smallWidth));
+
+                        //top right
+                        this.addVertex(this.x + ((i + 1) * this.smallWidth),
+                            this.y + (j * this.smallWidth));
                     }
                     if (!this.neighborPixel(i, j, 1)) {
                         //add both east vertices
@@ -56,6 +64,33 @@ class Block {
                 pop();
             }
         }
+
+        for (let v = 0; v < this.vertices.length; v++) {
+            push();
+            fill(255, 255, 0);
+            noStroke();
+            ellipseMode(CENTER);
+            ellipse(this.vertices[v].x, this.vertices[v].y, 8);
+            pop();
+        }
+    }
+
+    addVertex(X, Y) {
+        if (!this.vertexExists(X, Y)) {
+            this.vertices.push({
+                x: X,
+                y: Y
+            });
+        }
+    }
+
+    vertexExists(x, y) {
+        for (let i = 0; i < this.vertices.length; i++) {
+            if (this.vertices[i].x == x && this.vertices[i].y == y) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
