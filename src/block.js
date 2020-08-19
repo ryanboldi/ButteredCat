@@ -14,6 +14,7 @@ class Block {
         }
         this.pixels[0][0] = 1;
         this.pixels[1][0] = 1;
+        this.pixels[1][1] = 1;
         this.pixels[2][0] = 1;
         this.pixels[3][0] = 1;
         this.pixels[0][1] = 1;
