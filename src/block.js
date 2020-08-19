@@ -38,13 +38,37 @@ class Block {
                             this.y + (j * this.smallWidth));
                     }
                     if (!this.neighborPixel(i, j, 1)) {
-                        //add both east vertices
+
+                        //top right
+                        this.addVertex(this.x + ((i + 1) * this.smallWidth),
+                            this.y + (j * this.smallWidth));
+
+                        //bottom right
+                        this.addVertex(this.x + ((i + 1) * this.smallWidth),
+                            this.y + ((j + 1) * this.smallWidth));
                     }
                     if (!this.neighborPixel(i, j, 2)) {
                         //add both south vertices
+
+                        //bottom left
+                        this.addVertex(this.x + (i * this.smallWidth),
+                            this.y + ((j + 1) * this.smallWidth));
+
+                        //bottom right
+                        this.addVertex(this.x + ((i + 1) * this.smallWidth),
+                            this.y + ((j + 1) * this.smallWidth));
                     }
                     if (!this.neighborPixel(i, j, 3)) {
                         //add both west vertices
+
+                        //top left
+                        this.addVertex(this.x + (i * this.smallWidth),
+                            this.y + (j * this.smallWidth));
+
+
+                        //bottom left
+                        this.addVertex(this.x + (i * this.smallWidth),
+                            this.y + ((j + 1) * this.smallWidth));
                     }
                 }
             }
