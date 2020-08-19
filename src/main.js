@@ -23,7 +23,6 @@ let b;
 
 function setup() {
     createCanvas(800, 800);
-    console.log(boxA.vertices);
     b = new Block();
 }
 function draw() {
@@ -46,6 +45,3 @@ function draw() {
     endShape(CLOSE);
     pop();
 }
-
-
-

@@ -12,10 +12,15 @@ class Block {
                 this.pixels[i][j] = 0;
             }
         }
+        this.pixels[0][0] = 1;
+        this.pixels[1][0] = 1;
+        this.pixels[2][0] = 1;
+        this.pixels[3][0] = 1;
+        this.pixels[0][1] = 1;
+        this.pixels[0][2] = 1;
+        this.pixels[0][3] = 1;
         this.pixels[1][3] = 1;
-        this.pixels[2][3] = 1;
-        this.pixels[3][3] = 1;
-        this.pixels[3][4] = 1;
+        this.pixels[3][1] = 1;
 
         this.vertices = [];
         for (let i = 0; i < gridSize; i++) {
@@ -57,23 +62,39 @@ class Block {
 
 
             //check and make sure that x,y is not on a border, if so, no neighbors in that direction
-            if (x = gridSize - 1 && dir == 1) {
+            if (x == gridSize - 1 && dir == 1) {
                 return false;
-            } else if (x = 0 && dir == 3) {
+            } else if (x == 0 && dir == 3) {
                 return false;
-            } else if (y = gridSize - 1 && dir == 2) {
+            } else if (y == gridSize - 1 && dir == 2) {
                 return false;
-            } else if (y = 0 && dir == 0) {
+            } else if (y == 0 && dir == 0) {
                 return false;
             } else {
                 //pixel is not asking for a neighbor that doesnt exits,
                 //avoided index issues.
-                return true;
+                if (dir == 0) {
+                    if (this.pixels[x][y - 1] == 1) {
+                        return true;
+                    }
+                } else if (dir == 1) {
+                    if (this.pixels[x + 1][y] == 1) {
+                        return true;
+                    }
+                } else if (dir == 2) {
+                    if (this.pixels[x][y + 1] == 1) {
+                        return true;
+                    }
+                } else if (dir == 3) {
+                    if (this.pixels[x - 1][y] == 1) {
+                        return true;
+                    }
+                } else {
+                    return false;
+                }
             }
 
-        } else {
-            //pixel isn't on board
-            return false;
         }
+        return false;
     }
 }
