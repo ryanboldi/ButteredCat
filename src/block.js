@@ -25,8 +25,20 @@ class Block {
         this.vertices = [];
         for (let i = 0; i < gridSize; i++) {
             for (let j = 0; j < gridSize; j++) {
-                break;
-                //TODO implement convex hull. 
+                if (this.pixels[i][j] == 1) {
+                    if (!this.neighborPixel(i, j, 0)) {
+                        //add both north vertices
+                    }
+                    if (!this.neighborPixel(i, j, 1)) {
+                        //add both east vertices
+                    }
+                    if (!this.neighborPixel(i, j, 2)) {
+                        //add both south vertices
+                    }
+                    if (!this.neighborPixel(i, j, 3)) {
+                        //add both west vertices
+                    }
+                }
             }
         }
     }
