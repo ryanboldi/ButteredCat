@@ -51,7 +51,7 @@ class Block {
      * @param {number} y y coord of the pixel
      * @param {number} dir 0 for N, 1 for E, 2 for S, 3 for W
      */
-    neighbourPixel(x, y, dir) {
+    neighborPixel(x, y, dir) {
         // if x, y is on the board
         if (x < gridSize && y < gridSize && x >= 0 && y >= 0) {
 
@@ -66,8 +66,14 @@ class Block {
             } else if (y = 0 && dir == 0) {
                 return false;
             } else {
+                //pixel is not asking for a neighbor that doesnt exits,
+                //avoided index issues.
                 return true;
             }
+
+        } else {
+            //pixel isn't on board
+            return false;
         }
     }
 }
