@@ -74,10 +74,15 @@ class Block {
                 }
             }
         }
+
+        this.body = Matter.Bodies.fromVertices(this.x, this.y, this.vertices);
     }
 
 
     draw() {
+        push();
+        translate(this.body.x, this.body.y);
+        rotate(this.body.angle);
         for (let i = 0; i < gridSize; i++) {
             for (let j = 0; j < gridSize; j++) {
                 push();
@@ -85,10 +90,12 @@ class Block {
                 else fill(BACKGROUND_COLOR);
                 noStroke();
                 rectMode(CORNER);
-                rect(this.x + (i * this.smallWidth), this.y + (j * this.smallWidth), this.smallWidth, this.smallWidth);
+                rect((i * this.smallWidth), (j * this.smallWidth), this.smallWidth, this.smallWidth);
                 pop();
             }
         }
+
+        pop();
 
         for (let v = 0; v < this.vertices.length; v++) {
             push();
