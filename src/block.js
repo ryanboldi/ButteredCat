@@ -1,7 +1,7 @@
 class Block {
     constructor() {
         //these coords refer the to the top left position of the block
-        this.x = 70;
+        this.x = 300;
         this.y = 70;
         this.width = 300; //block will be cubical
         this.smallWidth = this.width / gridSize; //width of each pixel
@@ -10,6 +10,9 @@ class Block {
         for (let i = 0; i < gridSize; i++) {
             for (let j = 0; j < gridSize; j++) {
                 this.pixels[i][j] = 0;
+                if (i > j) {
+                    this.pixels[i][j] = 1;
+                }
             }
         }
         // this.pixels[0][0] = 1;
@@ -23,10 +26,9 @@ class Block {
         // this.pixels[1][3] = 1;
         // this.pixels[3][1] = 1;
 
-        this.pixels[0][0] = 1;
-        this.pixels[0][1] = 1;
-        this.pixels[1][0] = 1;
-        //this.pixels[2][2] = 1;
+        //this.pixels[0][0] = 1;
+        //this.pixels[0][1] = 1;
+        //this.pixels[0][2] = 1;
 
         this.vertices = [];
         for (let i = 0; i < gridSize; i++) {
@@ -91,19 +93,20 @@ class Block {
         push();
         angleMode(DEGREES);
         rotate(this.body.angle);
-        // for (let i = 0; i < gridSize; i++) {
-        //     for (let j = 0; j < gridSize; j++) {
-        //         push();
-        //         if (this.pixels[i][j] == 1) fill(0);
-        //         else fill(BACKGROUND_COLOR);
-        //         noStroke();
-        //         rectMode(CORNER);
-        //         rect((i * this.smallWidth), (j * this.smallWidth), this.smallWidth, this.smallWidth);
-        //         pop();
-        //     }
-        // }
+        for (let i = 0; i < gridSize; i++) {
+            for (let j = 0; j < gridSize; j++) {
+                push();
+                if (this.pixels[i][j] == 1) fill(0);
+                else fill(BACKGROUND_COLOR);
+                noStroke();
+                rectMode(CORNER);
+                rect((i * this.smallWidth), (j * this.smallWidth), this.smallWidth, this.smallWidth);
+                pop();
+            }
+        }
 
         fill(50, 60, 70);
+
         beginShape();
         for (let p = 1; p < this.body.parts.length; p++)
             for (let i = 0; i < this.body.parts[p].vertices.length; i++) {
@@ -111,10 +114,14 @@ class Block {
             }
         endShape(CLOSE);
 
-        for (let v = 0; v < this.body.vertices.length; v++) {
-            fill(255, 255, 0);
-            ellipse(this.body.vertices[v].x, this.body.vertices[v].y, 8);
-        }
+
+        beginShape();
+        for (let p = 1; p < this.body.parts.length; p++)
+            for (let i = 0; i < this.body.parts[p].vertices.length; i++) {
+                fill(255, 255, 0);
+                ellipse(this.body.parts[p].vertices[i].x, this.body.parts[p].vertices[i].y, 8);
+            }
+        endShape(CLOSE);
         pop();
     }
 

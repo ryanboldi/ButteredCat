@@ -5,11 +5,11 @@ let Engine = Matter.Engine,
     World = Matter.World,
     Bodies = Matter.Bodies;
 
-let gridSize = 5;
+let gridSize = 10;
 
 let engine = Engine.create();
 
-let boxA = Bodies.rectangle(150, 150, 40, 40);
+let boxA = Bodies.rectangle(100, 150, 40, 80);
 let ground = Bodies.rectangle(400, 730, 810, 140, { isStatic: true });
 
 
