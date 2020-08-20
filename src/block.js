@@ -105,9 +105,10 @@ class Block {
 
         fill(50, 60, 70);
         beginShape();
-        for (let i = 0; i < this.body.vertices.length; i++) {
-            vertex(this.body.vertices[i].x, this.body.vertices[i].y);
-        }
+        for (let p = 1; p < this.body.parts.length; p++)
+            for (let i = 0; i < this.body.parts[p].vertices.length; i++) {
+                vertex(this.body.parts[p].vertices[i].x, this.body.parts[p].vertices[i].y);
+            }
         endShape(CLOSE);
 
         for (let v = 0; v < this.body.vertices.length; v++) {
