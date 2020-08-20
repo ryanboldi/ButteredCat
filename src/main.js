@@ -5,17 +5,13 @@ let Engine = Matter.Engine,
     World = Matter.World,
     Bodies = Matter.Bodies;
 
-let gridSize = 10;
+let gridSize = 5;
 
 let engine = Engine.create();
 
-let boxA = Bodies.rectangle(400, 200, 80, 80);
-let boxB = Bodies.rectangle(400, 50, 80, 80);
-let ground = Bodies.rectangle(400, 770, 810, 60, { isStatic: true });
+let boxA = Bodies.rectangle(150, 150, 40, 40);
+let ground = Bodies.rectangle(400, 730, 810, 140, { isStatic: true });
 
-World.add(engine.world, [boxA, boxB, ground]);
-
-Engine.run(engine);
 
 BACKGROUND_COLOR = 210;
 
@@ -24,6 +20,8 @@ let b;
 function setup() {
     createCanvas(800, 800);
     b = new Block();
+    World.add(engine.world, [boxA, b.body, ground]);
+    Engine.run(engine);
 }
 function draw() {
     background(BACKGROUND_COLOR);

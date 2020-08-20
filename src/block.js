@@ -1,8 +1,8 @@
 class Block {
     constructor() {
         //these coords refer the to the top left position of the block
-        this.x = 50;
-        this.y = 50;
+        this.x = 70;
+        this.y = 70;
         this.width = 300; //block will be cubical
         this.smallWidth = this.width / gridSize; //width of each pixel
 
@@ -12,16 +12,21 @@ class Block {
                 this.pixels[i][j] = 0;
             }
         }
+        // this.pixels[0][0] = 1;
+        // this.pixels[1][0] = 1;
+        // this.pixels[1][1] = 1;
+        // this.pixels[2][0] = 1;
+        // this.pixels[3][0] = 1;
+        // this.pixels[0][1] = 1;
+        // this.pixels[0][2] = 1;
+        // this.pixels[0][3] = 1;
+        // this.pixels[1][3] = 1;
+        // this.pixels[3][1] = 1;
+
         this.pixels[0][0] = 1;
-        this.pixels[1][0] = 1;
-        this.pixels[1][1] = 1;
-        this.pixels[2][0] = 1;
-        this.pixels[3][0] = 1;
         this.pixels[0][1] = 1;
-        this.pixels[0][2] = 1;
-        this.pixels[0][3] = 1;
-        this.pixels[1][3] = 1;
-        this.pixels[3][1] = 1;
+        this.pixels[1][0] = 1;
+        //this.pixels[2][2] = 1;
 
         this.vertices = [];
         for (let i = 0; i < gridSize; i++) {
@@ -31,80 +36,85 @@ class Block {
                         //add both north vertices
 
                         //top left
-                        this.addVertex(this.x + (i * this.smallWidth),
-                            this.y + (j * this.smallWidth));
+                        this.addVertex((i * this.smallWidth),
+                            (j * this.smallWidth));
 
                         //top right
-                        this.addVertex(this.x + ((i + 1) * this.smallWidth),
-                            this.y + (j * this.smallWidth));
+                        this.addVertex(((i + 1) * this.smallWidth),
+                            (j * this.smallWidth));
                     }
                     if (!this.neighborPixel(i, j, 1)) {
 
                         //top right
-                        this.addVertex(this.x + ((i + 1) * this.smallWidth),
-                            this.y + (j * this.smallWidth));
+                        this.addVertex(((i + 1) * this.smallWidth),
+                            (j * this.smallWidth));
 
                         //bottom right
-                        this.addVertex(this.x + ((i + 1) * this.smallWidth),
-                            this.y + ((j + 1) * this.smallWidth));
+                        this.addVertex(((i + 1) * this.smallWidth),
+                            ((j + 1) * this.smallWidth));
                     }
                     if (!this.neighborPixel(i, j, 2)) {
                         //add both south vertices
 
                         //bottom left
-                        this.addVertex(this.x + (i * this.smallWidth),
-                            this.y + ((j + 1) * this.smallWidth));
+                        this.addVertex((i * this.smallWidth),
+                            ((j + 1) * this.smallWidth));
 
                         //bottom right
-                        this.addVertex(this.x + ((i + 1) * this.smallWidth),
-                            this.y + ((j + 1) * this.smallWidth));
+                        this.addVertex(((i + 1) * this.smallWidth),
+                            ((j + 1) * this.smallWidth));
                     }
                     if (!this.neighborPixel(i, j, 3)) {
                         //add both west vertices
 
                         //top left
-                        this.addVertex(this.x + (i * this.smallWidth),
-                            this.y + (j * this.smallWidth));
+                        this.addVertex((i * this.smallWidth),
+                            (j * this.smallWidth));
 
 
                         //bottom left
-                        this.addVertex(this.x + (i * this.smallWidth),
-                            this.y + ((j + 1) * this.smallWidth));
+                        this.addVertex((i * this.smallWidth),
+                            ((j + 1) * this.smallWidth));
                     }
                 }
             }
         }
 
-        this.body = Matter.Bodies.fromVertices(this.x, this.y, this.vertices);
+        let newVerts = Matter.Vertices.clockwiseSort(this.vertices)
+        console.log(this.vertices);
+        this.body = Matter.Bodies.fromVertices(this.x, this.y, newVerts);
+        console.log(this.body);
     }
 
 
     draw() {
         push();
-        translate(this.body.x, this.body.y);
+        angleMode(DEGREES);
         rotate(this.body.angle);
-        for (let i = 0; i < gridSize; i++) {
-            for (let j = 0; j < gridSize; j++) {
-                push();
-                if (this.pixels[i][j] == 1) fill(0);
-                else fill(BACKGROUND_COLOR);
-                noStroke();
-                rectMode(CORNER);
-                rect((i * this.smallWidth), (j * this.smallWidth), this.smallWidth, this.smallWidth);
-                pop();
-            }
+        // for (let i = 0; i < gridSize; i++) {
+        //     for (let j = 0; j < gridSize; j++) {
+        //         push();
+        //         if (this.pixels[i][j] == 1) fill(0);
+        //         else fill(BACKGROUND_COLOR);
+        //         noStroke();
+        //         rectMode(CORNER);
+        //         rect((i * this.smallWidth), (j * this.smallWidth), this.smallWidth, this.smallWidth);
+        //         pop();
+        //     }
+        // }
+
+        fill(50, 60, 70);
+        beginShape();
+        for (let i = 0; i < this.body.vertices.length; i++) {
+            vertex(this.body.vertices[i].x, this.body.vertices[i].y);
         }
+        endShape(CLOSE);
 
-        pop();
-
-        for (let v = 0; v < this.vertices.length; v++) {
-            push();
+        for (let v = 0; v < this.body.vertices.length; v++) {
             fill(255, 255, 0);
-            noStroke();
-            ellipseMode(CENTER);
-            ellipse(this.vertices[v].x, this.vertices[v].y, 8);
-            pop();
+            ellipse(this.body.vertices[v].x, this.body.vertices[v].y, 8);
         }
+        pop();
     }
 
     addVertex(X, Y) {
