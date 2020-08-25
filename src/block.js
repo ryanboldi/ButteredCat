@@ -9,7 +9,7 @@ class Block {
         this.pixels = Array.from(Array(gridSize), () => new Array(gridSize))
         for (let i = 0; i < gridSize; i++) {
             for (let j = 0; j < gridSize; j++) {
-                this.pixels[i][j] = 0;
+                this.pixels[i][j] = random([0, 1]);
             }
         }
         // this.pixels[0][0] = 1;
@@ -23,11 +23,11 @@ class Block {
         // this.pixels[1][3] = 1;
         // this.pixels[3][1] = 1;
 
-        this.pixels[0][0] = 1;
-        this.pixels[0][1] = 1;
-        this.pixels[0][2] = 1;
-        this.pixels[1][1] = 1;
-        this.pixels[1][2] = 1;
+        // this.pixels[0][0] = 1;
+        // this.pixels[0][1] = 1;
+        // this.pixels[0][2] = 1;
+        // this.pixels[1][1] = 1;
+        // this.pixels[1][2] = 1;
 
         this.vertices = [];
         for (let i = 0; i < gridSize; i++) {
