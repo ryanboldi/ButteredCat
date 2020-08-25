@@ -20,19 +20,14 @@ let b;
 function setup() {
     createCanvas(800, 800);
     b = new Block();
-    World.add(engine.world, [boxA, b.body, ground]);
+    World.add(engine.world, [b.body, ground]);
     Engine.run(engine);
+
 }
 function draw() {
     background(BACKGROUND_COLOR);
 
     fill(0);
-    beginShape();
-    boxA.vertices.forEach(v => {
-        vertex(v.x, v.y)
-    });
-    endShape(CLOSE);
-    b.draw();
 
     push();
     fill(50, 60, 70);
@@ -42,4 +37,5 @@ function draw() {
     }
     endShape(CLOSE);
     pop();
+    b.draw();
 }

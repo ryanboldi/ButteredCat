@@ -26,6 +26,8 @@ class Block {
         this.pixels[0][0] = 1;
         this.pixels[0][1] = 1;
         this.pixels[0][2] = 1;
+        this.pixels[1][1] = 1;
+        this.pixels[1][2] = 1;
 
         this.vertices = [];
         for (let i = 0; i < gridSize; i++) {
