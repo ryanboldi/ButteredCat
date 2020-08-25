@@ -10,9 +10,6 @@ class Block {
         for (let i = 0; i < gridSize; i++) {
             for (let j = 0; j < gridSize; j++) {
                 this.pixels[i][j] = 0;
-                if (i > j) {
-                    this.pixels[i][j] = 1;
-                }
             }
         }
         // this.pixels[0][0] = 1;
@@ -26,9 +23,9 @@ class Block {
         // this.pixels[1][3] = 1;
         // this.pixels[3][1] = 1;
 
-        //this.pixels[0][0] = 1;
-        //this.pixels[0][1] = 1;
-        //this.pixels[0][2] = 1;
+        this.pixels[0][0] = 1;
+        this.pixels[0][1] = 1;
+        this.pixels[0][2] = 1;
 
         this.vertices = [];
         for (let i = 0; i < gridSize; i++) {
@@ -123,6 +120,15 @@ class Block {
             }
         endShape(CLOSE);
         pop();
+    }
+
+    getFitness() {
+
+    }
+
+    //drops the block from a certain orientation.
+    drop(orientation) {
+
     }
 
     addVertex(X, Y) {
