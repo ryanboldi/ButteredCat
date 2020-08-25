@@ -29,63 +29,23 @@ class Block {
         // this.pixels[1][1] = 1;
         // this.pixels[1][2] = 1;
 
-        this.vertices = [];
+        let partsArr = [];
         for (let i = 0; i < gridSize; i++) {
             for (let j = 0; j < gridSize; j++) {
                 if (this.pixels[i][j] == 1) {
-                    if (!this.neighborPixel(i, j, 0)) {
-                        //add both north vertices
-
-                        //top left
-                        this.addVertex((i * this.smallWidth),
-                            (j * this.smallWidth));
-
-                        //top right
-                        this.addVertex(((i + 1) * this.smallWidth),
-                            (j * this.smallWidth));
-                    }
-                    if (!this.neighborPixel(i, j, 1)) {
-
-                        //top right
-                        this.addVertex(((i + 1) * this.smallWidth),
-                            (j * this.smallWidth));
-
-                        //bottom right
-                        this.addVertex(((i + 1) * this.smallWidth),
-                            ((j + 1) * this.smallWidth));
-                    }
-                    if (!this.neighborPixel(i, j, 2)) {
-                        //add both south vertices
-
-                        //bottom left
-                        this.addVertex((i * this.smallWidth),
-                            ((j + 1) * this.smallWidth));
-
-                        //bottom right
-                        this.addVertex(((i + 1) * this.smallWidth),
-                            ((j + 1) * this.smallWidth));
-                    }
-                    if (!this.neighborPixel(i, j, 3)) {
-                        //add both west vertices
-
-                        //top left
-                        this.addVertex((i * this.smallWidth),
-                            (j * this.smallWidth));
-
-
-                        //bottom left
-                        this.addVertex((i * this.smallWidth),
-                            ((j + 1) * this.smallWidth));
-                    }
+                    //Matter.Composite.add(this.body, Matter.Bodies.rectangle(i * this.smallWidth, j * this.smallWidth, this.smallWidth, this.smallWidth));
+                    partsArr.push(Matter.Bodies.rectangle(i * this.smallWidth, j * this.smallWidth, this.smallWidth, this.smallWidth));
                 }
             }
         }
 
-        let newVerts = Matter.Vertices.clockwiseSort(this.vertices)
-        this.body = Matter.Bodies.fromVertices(0, 0, newVerts);
+        this.body = Matter.Body.create({
+            parts: partsArr
+        });
+
         Matter.Body.translate(this.body, { x: this.x, y: this.y });
-        this.body.collisionFilter.group = -2;
     }
+
 
 
     draw() {
@@ -104,19 +64,22 @@ class Block {
 
         fill(50, 60, 70);
         stroke(0);
-        beginShape();
-        for (let p = 1; p < this.body.parts.length; p++)
+        for (let p = 1; p < this.body.parts.length; p++) {
+            beginShape();
             for (let i = 0; i < this.body.parts[p].vertices.length; i++) {
                 vertex(this.body.parts[p].vertices[i].x, this.body.parts[p].vertices[i].y);
             }
-        endShape(CLOSE);
+            endShape(CLOSE);
+        }
 
 
-        for (let p = 1; p < this.body.parts.length; p++)
+
+        for (let p = 1; p < this.body.parts.length; p++) {
             for (let i = 0; i < this.body.parts[p].vertices.length; i++) {
                 fill(255, 255, 0);
-                ellipse(this.body.parts[p].vertices[i].x, this.body.parts[p].vertices[i].y, 8);
+                ellipse(this.body.parts[p].vertices[i].x, this.body.parts[p].vertices[i].y, 10, 10);
             }
+        }
         pop();
     }
 
