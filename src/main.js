@@ -12,17 +12,23 @@ let engine = Engine.create();
 let boxA = Bodies.rectangle(100, 150, 40, 80);
 let ground = Bodies.rectangle(400, 730, 810, 140, { isStatic: true });
 
+let blocks = [];
+let blockCount = 10;
 
 BACKGROUND_COLOR = 210;
 
-let b;
-
 function setup() {
     createCanvas(800, 800);
-    b = new Block();
-    World.add(engine.world, [b.body, ground]);
-    Engine.run(engine);
+    bodies = []
+    for (let i = 0; i < blockCount; i++) {
+        blocks.push(new Block());
+        bodies.push(blocks[i].body);
+    }
 
+    bodies.push(ground);
+
+    World.add(engine.world, bodies);
+    Engine.run(engine);
 }
 function draw() {
     background(BACKGROUND_COLOR);
@@ -37,5 +43,8 @@ function draw() {
     }
     endShape(CLOSE);
     pop();
-    b.draw();
+
+    for (let i = 0; i < blocks.length; i++) {
+        blocks[i].draw();
+    }
 }

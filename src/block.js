@@ -2,7 +2,7 @@ class Block {
     constructor() {
         //these coords refer the to the top left position of the block
         this.x = 300;
-        this.y = 70;
+        this.y = 0;
         this.width = 300; //block will be cubical
         this.smallWidth = this.width / gridSize; //width of each pixel
 
@@ -83,7 +83,8 @@ class Block {
 
         let newVerts = Matter.Vertices.clockwiseSort(this.vertices)
         console.log(this.vertices);
-        this.body = Matter.Bodies.fromVertices(this.x, this.y, newVerts);
+        this.body = Matter.Bodies.fromVertices(0, 0, newVerts);
+        Matter.Body.translate(this.body, { x: this.x, y: this.y });
         console.log(this.body);
     }
 
@@ -92,20 +93,18 @@ class Block {
         push();
         angleMode(DEGREES);
         rotate(this.body.angle);
-        for (let i = 0; i < gridSize; i++) {
-            for (let j = 0; j < gridSize; j++) {
-                push();
-                if (this.pixels[i][j] == 1) fill(0);
-                else fill(BACKGROUND_COLOR);
-                noStroke();
-                rectMode(CORNER);
-                rect((i * this.smallWidth), (j * this.smallWidth), this.smallWidth, this.smallWidth);
-                pop();
-            }
-        }
+        // for (let i = 0; i < gridSize; i++) {
+        //     for (let j = 0; j < gridSize; j++) {
+        //         if (this.pixels[i][j] == 1) fill(0);
+        //         else fill(BACKGROUND_COLOR);
+        //         noStroke();
+        //         rectMode(CORNER);
+        //         rect((i * this.smallWidth), (j * this.smallWidth), this.smallWidth, this.smallWidth);
+        //     }
+        // }
 
         fill(50, 60, 70);
-
+        stroke(0);
         beginShape();
         for (let p = 1; p < this.body.parts.length; p++)
             for (let i = 0; i < this.body.parts[p].vertices.length; i++) {
@@ -114,13 +113,11 @@ class Block {
         endShape(CLOSE);
 
 
-        beginShape();
         for (let p = 1; p < this.body.parts.length; p++)
             for (let i = 0; i < this.body.parts[p].vertices.length; i++) {
                 fill(255, 255, 0);
                 ellipse(this.body.parts[p].vertices[i].x, this.body.parts[p].vertices[i].y, 8);
             }
-        endShape(CLOSE);
         pop();
     }
 
