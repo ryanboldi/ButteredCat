@@ -92,15 +92,15 @@ class Block {
         push();
         angleMode(DEGREES);
         rotate(this.body.angle);
-        // for (let i = 0; i < gridSize; i++) {
-        //     for (let j = 0; j < gridSize; j++) {
-        //         if (this.pixels[i][j] == 1) fill(0);
-        //         else fill(BACKGROUND_COLOR);
-        //         noStroke();
-        //         rectMode(CORNER);
-        //         rect((i * this.smallWidth), (j * this.smallWidth), this.smallWidth, this.smallWidth);
-        //     }
-        // }
+        for (let i = 0; i < gridSize; i++) {
+            for (let j = 0; j < gridSize; j++) {
+                if (this.pixels[i][j] == 1) fill(0);
+                else fill(BACKGROUND_COLOR);
+                noStroke();
+                rectMode(CORNER);
+                rect((i * this.smallWidth), (j * this.smallWidth), this.smallWidth, this.smallWidth);
+            }
+        }
 
         fill(50, 60, 70);
         stroke(0);

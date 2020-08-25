@@ -5,7 +5,7 @@ let Engine = Matter.Engine,
     World = Matter.World,
     Bodies = Matter.Bodies;
 
-let gridSize = 3;
+let gridSize = 5;
 
 let engine = Engine.create();
 
@@ -13,7 +13,7 @@ let boxA = Bodies.rectangle(100, 150, 40, 80);
 let ground = Bodies.rectangle(400, 730, 810, 140, { isStatic: true });
 
 let blocks = [];
-let blockCount = 10;
+let blockCount = 1;
 
 BACKGROUND_COLOR = 210;
 
