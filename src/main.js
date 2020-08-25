@@ -19,6 +19,7 @@ BACKGROUND_COLOR = 210;
 
 function setup() {
     createCanvas(800, 800);
+
     bodies = []
     for (let i = 0; i < blockCount; i++) {
         blocks.push(new Block());

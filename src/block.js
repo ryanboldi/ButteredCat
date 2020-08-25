@@ -82,10 +82,9 @@ class Block {
         }
 
         let newVerts = Matter.Vertices.clockwiseSort(this.vertices)
-        console.log(this.vertices);
         this.body = Matter.Bodies.fromVertices(0, 0, newVerts);
         Matter.Body.translate(this.body, { x: this.x, y: this.y });
-        console.log(this.body);
+        this.body.collisionFilter.group = -2;
     }
 
 
