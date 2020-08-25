@@ -5,7 +5,7 @@ let Engine = Matter.Engine,
     World = Matter.World,
     Bodies = Matter.Bodies;
 
-let gridSize = 2;
+let gridSize = 6;
 
 let engine = Engine.create();
 
