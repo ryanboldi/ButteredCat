@@ -52,15 +52,15 @@ class Block {
         push();
         angleMode(DEGREES);
         rotate(this.body.angle);
-        for (let i = 0; i < gridSize; i++) {
-            for (let j = 0; j < gridSize; j++) {
-                if (this.pixels[i][j] == 1) fill(0);
-                else fill(BACKGROUND_COLOR);
-                noStroke();
-                rectMode(CORNER);
-                rect((i * this.smallWidth), (j * this.smallWidth), this.smallWidth, this.smallWidth);
-            }
-        }
+        // for (let i = 0; i < gridSize; i++) {
+        //     for (let j = 0; j < gridSize; j++) {
+        //         if (this.pixels[i][j] == 1) fill(0);
+        //         else fill(BACKGROUND_COLOR);
+        //         noStroke();
+        //         rectMode(CORNER);
+        //         rect((i * this.smallWidth), (j * this.smallWidth), this.smallWidth, this.smallWidth);
+        //     }
+        // }
 
         fill(50, 60, 70);
         stroke(0);
@@ -89,8 +89,8 @@ class Block {
     drop(orientation) {
         this.y = 0;
         this.x = width / 2;
-        Matter.Body.translate(this.body, { x: this.x, y: this.y });
-        Matter.Body.rotate(this.body, orientation);
+        Matter.Body.setPosition(this.body, { x: this.x, y: this.y });
+        Matter.Body.setAngle(this.body, TWO_PI * (orientation / 360));
     }
 
     addVertex(X, Y) {

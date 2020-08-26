@@ -7,6 +7,9 @@ let Engine = Matter.Engine,
 
 let gridSize = 6;
 
+let drops = 10;
+let dropAngleDelta = 360 / drops;
+
 let engine = Engine.create();
 
 let boxA = Bodies.rectangle(100, 150, 40, 80);
