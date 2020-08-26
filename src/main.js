@@ -5,9 +5,10 @@ let Engine = Matter.Engine,
     World = Matter.World,
     Bodies = Matter.Bodies;
 
-let gridSize = 10;
+let gridSize = 5;
 
 let groundObjectFriction = 0.03;
+let airObjectFriction = 0.004;
 
 let drops = 10;
 let dropAngleDelta = 360 / drops;
@@ -37,6 +38,7 @@ function setup() {
     bodies.push(ground);
 
     World.add(engine.world, bodies);
+    engine.world.gravity.scale = 0.0008;
     Engine.run(engine);
 }
 function draw() {

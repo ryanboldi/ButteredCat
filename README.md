@@ -8,3 +8,7 @@
 
 # How the CPPN will generate a usable mesh
 ![block](/planning/block.png)
+
+# Testing
+After implementing the physics engine, collision handling and drop system, I tested dropping pre-made shapes at different angles.
+![test](/gifs/test.gif)
