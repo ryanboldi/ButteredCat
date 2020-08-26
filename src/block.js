@@ -72,12 +72,10 @@ class Block {
             endShape(CLOSE);
         }
 
-
-
         for (let p = 1; p < this.body.parts.length; p++) {
             for (let i = 0; i < this.body.parts[p].vertices.length; i++) {
                 fill(255, 255, 0);
-                ellipse(this.body.parts[p].vertices[i].x, this.body.parts[p].vertices[i].y, 10, 10);
+                ellipse(this.body.parts[p].vertices[i].x, this.body.parts[p].vertices[i].y, 50 / (gridSize), 50 / gridSize);
             }
         }
         pop();
@@ -87,9 +85,12 @@ class Block {
 
     }
 
-    //drops the block from a certain orientation.
+    //drops the block from a certain orientation. orientation will be angle in degrees.
     drop(orientation) {
-
+        this.y = 0;
+        this.x = width / 2;
+        Matter.Body.translate(this.body, { x: this.x, y: this.y });
+        Matter.Body.rotate(this.body, orientation);
     }
 
     addVertex(X, Y) {
