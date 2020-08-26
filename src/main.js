@@ -5,17 +5,17 @@ let Engine = Matter.Engine,
     World = Matter.World,
     Bodies = Matter.Bodies;
 
-let gridSize = 10;
+let gridSize = 15;
 
-let groundObjectFriction = 0.03;
+let groundObjectFriction = 0.01;
 let airObjectFriction = 0.004;
 
 let drops = 10;
 let dropAngleDelta = 360 / drops;
 
 let engine = Engine.create({
-    positionIterations: 15,
-    velocityIterations: 6,
+    positionIterations: 10,
+    velocityIterations: 10,
     enableSleeping: false
 });
 

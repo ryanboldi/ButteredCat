@@ -11,7 +11,7 @@ class Block {
             for (let j = 0; j < gridSize; j++) {
                 //this.pixels[i][j] = random([0, 1]);
                 //this.pixels[i][j] = 0;
-                if (((i - (gridSize / 2)) ** 2) + ((j - (gridSize / 2)) ** 2) < (gridSize / 2) ** 2) {
+                if (((i - (gridSize / 2)) ** 2) + ((j - (gridSize / 2)) ** 2) < (gridSize / 2) ** 2 - 10) {
                     this.pixels[i][j] = 1;
                 }
             }
