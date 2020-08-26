@@ -5,7 +5,7 @@ let Engine = Matter.Engine,
     World = Matter.World,
     Bodies = Matter.Bodies;
 
-let gridSize = 5;
+let gridSize = 10;
 
 let groundObjectFriction = 0.03;
 let airObjectFriction = 0.004;
