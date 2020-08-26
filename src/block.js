@@ -30,6 +30,7 @@ class Block {
         this.pixels[1][1] = 1;
         this.pixels[1][2] = 1;
         this.pixels[2][2] = 1;
+        this.pixels[2][3] = 1;
 
         let partsArr = [];
         for (let i = 0; i < gridSize; i++) {
@@ -46,7 +47,9 @@ class Block {
             friction: groundObjectFriction,
             frictionAir: airObjectFriction
         });
-
+        Matter.Body.set(this.body, {
+            slop: 0
+        });
         Matter.Body.translate(this.body, { x: this.x, y: this.y });
     }
 
