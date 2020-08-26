@@ -7,7 +7,7 @@ let Engine = Matter.Engine,
 
 let gridSize = 10;
 
-let groundObjectFriction = 0.001;
+let groundObjectFriction = 0.03;
 
 let drops = 10;
 let dropAngleDelta = 360 / drops;
