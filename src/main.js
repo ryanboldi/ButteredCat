@@ -5,15 +5,20 @@ let Engine = Matter.Engine,
     World = Matter.World,
     Bodies = Matter.Bodies;
 
-let gridSize = 6;
+let gridSize = 10;
+
+let groundObjectFriction = 0.001;
 
 let drops = 10;
 let dropAngleDelta = 360 / drops;
 
-let engine = Engine.create();
+let engine = Engine.create({
+    positionIterations: 15,
+    velocityIterations: 6,
+    enableSleeping: false
+});
 
-let boxA = Bodies.rectangle(100, 150, 40, 80);
-let ground = Bodies.rectangle(400, 730, 810, 140, { isStatic: true });
+let ground = Bodies.rectangle(400, 730, 810, 140, { isStatic: true, friction: groundObjectFriction });
 
 let blocks = [];
 let blockCount = 1;

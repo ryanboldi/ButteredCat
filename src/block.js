@@ -40,7 +40,8 @@ class Block {
         }
 
         this.body = Matter.Body.create({
-            parts: partsArr
+            parts: partsArr,
+            friction: groundObjectFriction
         });
 
         Matter.Body.translate(this.body, { x: this.x, y: this.y });
