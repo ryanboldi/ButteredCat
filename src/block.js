@@ -1,6 +1,7 @@
 class Block {
-    constructor() {
+    constructor(genome) {
         //these coords refer the to the top left position of the block
+        this.brain = genome;
         this.x = 300;
         this.y = 0;
         this.width = 300; //block will be cubical
@@ -55,6 +56,9 @@ class Block {
             slop: 0
         });
         Matter.Body.translate(this.body, { x: this.x, y: this.y });
+
+
+        blocks.push(this);
     }
 
 

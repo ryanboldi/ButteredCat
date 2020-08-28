@@ -22,7 +22,7 @@ let engine = Engine.create({
 let ground = Bodies.rectangle(400, 730, 810, 140, { isStatic: true, friction: groundObjectFriction });
 
 let blocks = [];
-let blockCount = 1;
+let blockCount = BLOCK_COUNT;
 
 BACKGROUND_COLOR = 210;
 
@@ -31,7 +31,7 @@ function setup() {
 
     bodies = []
     for (let i = 0; i < blockCount; i++) {
-        blocks.push(new Block());
+        //blocks.push(new Block());
         bodies.push(blocks[i].body);
     }
 
