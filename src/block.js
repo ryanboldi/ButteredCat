@@ -12,8 +12,13 @@ class Block {
             for (let j = 0; j < gridSize; j++) {
                 //this.pixels[i][j] = random([0, 1]);
                 //this.pixels[i][j] = 0;
-                if (((i - (gridSize / 2)) ** 2) + ((j - (gridSize / 2)) ** 2) < (gridSize / 2) ** 2 - 10) {
+                // if (((i - (gridSize / 2)) ** 2) + ((j - (gridSize / 2)) ** 2) < (gridSize / 2) ** 2 - 10) {
+                //     this.pixels[i][j] = 1;
+                // }
+                if (this.brain.activate([i / gridSize, j / gridSize]) > 0.5) {
                     this.pixels[i][j] = 1;
+                } else {
+                    this.pixels[i][j] = 0;
                 }
             }
         }
@@ -57,7 +62,7 @@ class Block {
         });
         Matter.Body.translate(this.body, { x: this.x, y: this.y });
 
-
+        World.add(engine.world, this.body);
         blocks.push(this);
     }
 

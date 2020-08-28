@@ -28,18 +28,16 @@ BACKGROUND_COLOR = 210;
 
 function setup() {
     createCanvas(800, 800);
+    initNeat();
+    //for (let i = 0; i < BLOCK_COUNT; i++) {
+    //new Block();
+    //}
 
-    bodies = []
-    for (let i = 0; i < blockCount; i++) {
-        //blocks.push(new Block());
-        bodies.push(blocks[i].body);
-    }
-
-    bodies.push(ground);
-
-    World.add(engine.world, bodies);
+    World.add(engine.world, ground);
     engine.world.gravity.scale = 0.0008;
     Engine.run(engine);
+
+    startEvaluation();
 }
 function draw() {
     background(BACKGROUND_COLOR);

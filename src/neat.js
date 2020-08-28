@@ -7,7 +7,7 @@ var Architect = neataptic.Architect;
 Config.warnings = false;
 
 /* genetic algorithm settings */
-let BLOCK_COUNT = 1;
+let BLOCK_COUNT = 10;
 var ITERATIONS = 1200; //how many frames per generation maximum
 var MUTATION_RATE = 0.5;
 var ELITISM = Math.round(0.1 * BLOCK_COUNT);
@@ -52,7 +52,7 @@ function initNeat() {
 }
 
 function startEvaluation() {
-    balls = [];  //resets ball array.
+    blocks = [];
     for (var genome in neat.population) {
         genome = neat.population[genome];
         new Block(genome);
