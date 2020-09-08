@@ -2,10 +2,11 @@
  Evolving 2D objects that land the same way every time they are dropped!
 
 # Libraries:
-[lodash.js](https://lodash.com/)
+* [p5.js](https://p5js.org/) - Used to draw everything to the browser
+* [matter.js](https://brm.io/matter-js/) - Physics engine
+* [neataptic.js](https://github.com/wagenaartje/neataptic) - Used to control the evolution of the objects
+* [lodash.js](https://lodash.com/) - Used for deepcopying js objects
 
-
-![Planning](/planning/FitnessFunction.png)
 
 # Compositional Pattern Producing Network
 ![cppn](/planning/cppn.png)
